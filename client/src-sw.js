@@ -24,25 +24,24 @@ warmStrategyCache({
   strategy: pageCache,
 });
 
-const assetCache = new CacheFirst({
-  cacheName: "asset-cache",
-  plugins: [
-    new CacheableResponsePlugin({
-      statuses: [0, 200],
-    }),
-    new ExpirationPlugin({
-      maxAgeSeconds: 30 * 24 * 60 * 60,
-    }),
-  ],
-});
-
-offlineFallback({
-  urls: ["/css/style.css", "/index.js"],
-  strategy: assetCache,
-});
-
 registerRoute(({ request }) => request.mode === "navigate", pageCache);
 
 // TODO: Implement asset caching
+// const assetCache = new CacheFirst({
+//   cacheName: "asset-cache",
+//   plugins: [
+//     new CacheableResponsePlugin({
+//       statuses: [0, 200],
+//     }),
+//     new ExpirationPlugin({
+//       maxAgeSeconds: 30 * 24 * 60 * 60,
+//     }),
+//   ],
+// });
 
-registerRoute(({ request }) => request.mode === "navigate", assetCache);
+// offlineFallback({
+//   urls: ["/css/style.css", "/js/index.js"],
+//   strategy: assetCache,
+// });
+
+// registerRoute(({ request }) => request.mode === "navigate", assetCache);
