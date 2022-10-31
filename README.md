@@ -8,9 +8,10 @@ A PWA (Progressive Web App Text Editor). The app allows the user to install and 
 
 ## Screenshot(s)
 
-![Screenshot1](google.com)
-![Screenshot2](google.com)
+![Screenshot1](./docs/Assets/Screenshot1.png)
+
+<!-- ![Screenshot2](./docs/Assets/Screenshot2.png) -->
 
 ## Link to Deployed App
 
-[Link to deployed app](google.com)
+[Link to deployed app](https://enigmatic-sands-32378.herokuapp.com/)
