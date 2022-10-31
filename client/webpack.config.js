@@ -3,29 +3,34 @@ const WebpackPwaManifest = require("webpack-pwa-manifest");
 const path = require("path");
 const { InjectManifest } = require("workbox-webpack-plugin");
 
-// TODO: Add and configure workbox plugins for a service worker and manifest file.
-// TODO: Add CSS loaders and babel to webpack.
+// Completed: Added and configure workbox plugins for a service worker and manifest file.
+// Completed: Added CSS loaders and babel to webpack.
 
 module.exports = () => {
   return {
     mode: "development",
+    // The entry point for the files once verything is bundled
     entry: {
       main: "./src/js/index.js",
       install: "./src/js/install.js",
     },
     output: {
+      // Output path and file name(s)
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
     },
     plugins: [
+      // Web pack plugging for HTML template and the title
       new HtmlWebpackPlugin({
         template: "./index.html",
         title: "Text Editor",
       }),
+      // Injects the custom service worker
       new InjectManifest({
         swSrc: "./src-sw.js",
         swDest: "src-sw.js",
       }),
+      // Creates a manifest.json file
       new WebpackPwaManifest({
         fingerprints: false,
         inject: true,
@@ -47,6 +52,7 @@ module.exports = () => {
     ],
 
     module: {
+      // The CSS loaders
       rules: [
         {
           test: /\.css$/i,
@@ -55,6 +61,7 @@ module.exports = () => {
         {
           test: /\.m?js$/,
           exclude: /node_modules/,
+          // Uses babel-loader
           use: {
             loader: "babel-loader",
             options: {
